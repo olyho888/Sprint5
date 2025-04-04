@@ -4,27 +4,27 @@ from locators import Locators
 from data import Data
 
 
-class TestLogout(Locators):
+class TestLogout:
 
     def test_logout(self, driver):
         # дождаться появления логотипа на странице
-        WebDriverWait(driver, 3).until(ec.presence_of_element_located(self.HEADER_LOGO))
+        WebDriverWait(driver, 3).until(ec.presence_of_element_located(Locators.HEADER_LOGO))
         # найти кнопку "Войти в аккаунт" и кликнуть по ней
-        driver.find_element(*self.LOGIN_TO_ACCOUNT).click()
+        driver.find_element(*Locators.LOGIN_TO_ACCOUNT).click()
         # дождаться появления заголовка "Вход"
-        WebDriverWait(driver, 3).until(ec.presence_of_element_located(self.BUTTON_ENTRANCE))
+        WebDriverWait(driver, 3).until(ec.presence_of_element_located(Locators.BUTTON_ENTRANCE))
         # найти поле для ввода "Email" ввести данные
-        driver.find_element(*self.EMAIL_INPUT).send_keys(Data.user["email"])
+        driver.find_element(*Locators.EMAIL_INPUT).send_keys(Data.user["email"])
         # найти поле для ввода "Пароль" ввести данные
-        driver.find_element(*self.PASSWORD_INPUT).send_keys(Data.user["password"])
+        driver.find_element(*Locators.PASSWORD_INPUT).send_keys(Data.user["password"])
         # найти кнопку "Войти" и кликнуть по ней
-        driver.find_element(*self.BUTTON_SIGN_IN).click()
+        driver.find_element(*Locators.BUTTON_SIGN_IN).click()
         # найти ссылку "Личный Кабинет" и кликнуть по ней
-        driver.find_element(*self.LINK_PERSONAL_ACCOUNT).click()
+        driver.find_element(*Locators.LINK_PERSONAL_ACCOUNT).click()
         # дождаться появления заголовка "Профиль"
-        WebDriverWait(driver, 3).until(ec.presence_of_element_located(self.TITLE_PROFILE))
+        WebDriverWait(driver, 3).until(ec.presence_of_element_located(Locators.TITLE_PROFILE))
         # найти кнопку "Выход" и кликнуть по ней
-        driver.find_element(*self.BUTTON_LOGOUT).click()
+        driver.find_element(*Locators.BUTTON_LOGOUT).click()
         # дождаться появления заголовка "Вход"
-        WebDriverWait(driver, 3).until(ec.presence_of_element_located(self.BUTTON_ENTRANCE))
+        WebDriverWait(driver, 3).until(ec.presence_of_element_located(Locators.BUTTON_ENTRANCE))
         assert 'login' in driver.current_url
